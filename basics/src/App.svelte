@@ -1,4 +1,6 @@
 <script>
+	import ContactCard from './ContactCard.svelte'
+
 	export let name;
 	let age = 30
 
@@ -28,6 +30,10 @@
 
 	<button on:click="{incrementAge}">Increase Age</button>
 	<button on:click="{changeName}" value="Cool">Change Name</button>
+
+
+	<ContactCard name={name} age={age} />
+
 </main>
 
 <style>
