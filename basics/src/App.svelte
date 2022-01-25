@@ -1,69 +1,85 @@
 <script>
-	import ContactCard from './ContactCard.svelte'
+import ContactCard from "./ContactCard.svelte";
 
-	export let name;
-	let age = 30
-	let jobTitle = ''
-	let description = ''
-	let imageURL = 'https://via.placeholder.com/150'
+  let name = "Max";
+  let title = "";
+  let image = "";
+  let description = "";
+  let formState = "valid";
 
-	$: uppercaseName = name.toUpperCase()
+  let createdContacts = [];
 
-	$: console.log(name)
+  function addContact() {
+    if(name.trim().length == 0 || title.trim().length == 0 ||
+        image.trim() == 0 || description.trim().length == 0) {
+          formState = "invalid";
+          return;
+    }
+    let createdContact = {
+      id: Math.random(),
+      name: name,
+      jobTitle: title,
+      imageUrl: image,
+      desc: description
+    };
+    
+    // push doesn't work to update arrays!
+    createdContacts = [...createdContacts, createdContact];
+    formState = "done"; 
+  }
 
-	$: if (age === 33) {
-		console.log('Label statement condition ran')
-	}
+  function deleteFirst() {
+    createdContacts = createdContacts.slice(1);
+  }
 
-	function incrementAge() {
-		age += 1
-	}
+  function deleteLast() {
+    createdContacts = createdContacts.slice(0, -1);
 
-	function changeName(e) {
-		name = e.target.value
-	}
+  }
+
 </script>
 
-<main>
-	<h1>Hello {uppercaseName}!</h1>
-	<h2>I am {age} years old.</h2>
-
-	<!-- <input value={name} on:input={changeName} type="text"  /> -->
-	<input bind:value={name} type="text"  />
-	<input bind:value={jobTitle} type="text" />
-	<textarea bind:value={description}></textarea>
-
-	<button on:click="{incrementAge}">Increase Age</button>
-	<button on:click="{changeName}" value="Cool">Change Name</button>
-
-	<ContactCard
-		name={name}
-		age={age}
-		jobTitle={jobTitle}
-		{description} 
-		imageURL={imageURL}
-	/>
-		<!-- imageURL={imageURL} -->
-
-</main>
-
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  #form {
+    width: 30rem;
+    max-width: 100%;
+  }
 </style>
+
+<div id="form">
+  <div class="form-control">
+    <label for="userName">User Name</label>
+    <input type="text" bind:value={name} id="userName" />
+  </div>
+  <div class="form-control">
+    <label for="jobTitle">Job Title</label>
+    <input type="text" bind:value={title} id="jobTitle" />
+  </div>
+  <div class="form-control">
+    <label for="image">Image URL</label>
+    <input type="text" bind:value={image} id="image" />
+  </div>
+  <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea rows="3" bind:value={description} id="desc" />
+  </div>
+</div>
+
+<!-- every time I click, add a new contact card (if form is valid!) -->
+<button on:click|once={addContact}>Add contact card</button>
+<button on:click={deleteFirst}>Delete first</button>
+<button on:click={deleteLast}>Delete last</button>
+
+  
+{#if formState === "invalid"}
+  <p>Invalid input!</p>
+{/if}
+
+{#each createdContacts as contact, currentIndex (contact.id)}
+  <h2>{currentIndex + 1}</h2>
+  <ContactCard userName={contact.name} 
+    jobTitle={contact.jobTitle} description={contact.desc} 
+    userImage={contact.imageUrl} />
+{:else}
+  <p>Please add new contacts, we found none!</p>
+{/each}
