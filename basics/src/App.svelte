@@ -3,6 +3,9 @@
 
 	export let name;
 	let age = 30
+	let jobTitle = ''
+	let description = ''
+	let imageURL = 'https://via.placeholder.com/150'
 
 	$: uppercaseName = name.toUpperCase()
 
@@ -27,12 +30,13 @@
 
 	<!-- <input value={name} on:input={changeName} type="text"  /> -->
 	<input bind:value={name} type="text"  />
+	<input bind:value={jobTitle} type="text" />
+	<textarea bind:value={description}></textarea>
 
 	<button on:click="{incrementAge}">Increase Age</button>
 	<button on:click="{changeName}" value="Cool">Change Name</button>
 
-
-	<ContactCard name={name} age={age} />
+	<ContactCard name={name} age={age} jobTitle={jobTitle} description={description} imageURL={imageURL} />
 
 </main>
 

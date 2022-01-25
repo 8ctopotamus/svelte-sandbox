@@ -1,20 +1,23 @@
 <script>
   export let name 
   export let age
+  export let jobTitle
+  export let description
+  export let imageURL
 </script>
 
 <div class="card">
   <header>
     <div>
-      <img src="" alt="" />
+      <img src={imageURL} alt={name} />
     </div>
     <div>
       <h1>{name} - {age}</h1>
-      <h2>Job Title</h2>
+      <h2>{jobTitle}</h2>
     </div>
   </header>
   <div>
-    <p>A short description</p>
+    <p>{description}</p>
   </div>
 </div>
 
