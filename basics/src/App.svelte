@@ -23,7 +23,8 @@
 	<h1>Hello {uppercaseName}!</h1>
 	<h2>I am {age} years old.</h2>
 
-	<input value={name} on:input={changeName} type="text"  />
+	<!-- <input value={name} on:input={changeName} type="text"  /> -->
+	<input bind:value={name} type="text"  />
 
 	<button on:click="{incrementAge}">Increase Age</button>
 	<button on:click="{changeName}" value="Cool">Change Name</button>
