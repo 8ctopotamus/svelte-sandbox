@@ -8,7 +8,7 @@
 
 <div class="card">
   <header>
-    <div class={`thumbnail ${imageURL && 'has-src'}`}>
+    <div class="thumbnail" class:has-src={imageURL}>
       <img src={imageURL} alt={name} />
     </div>
     <div>
