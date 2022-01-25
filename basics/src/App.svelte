@@ -43,6 +43,7 @@
 		{description} 
 		imageURL={imageURL}
 	/>
+		<!-- imageURL={imageURL} -->
 
 </main>
 
