@@ -14,16 +14,19 @@
 		age += 1
 	}
 
-	function changeName() {
-		name = 'Testing'
+	function changeName(e) {
+		name = e.target.value
 	}
 </script>
 
 <main>
 	<h1>Hello {uppercaseName}!</h1>
 	<h2>I am {age} years old.</h2>
+
+	<input value={name} on:input={changeName} type="text"  />
+
 	<button on:click="{incrementAge}">Increase Age</button>
-	<button on:click="{changeName}">Change Name</button>
+	<button on:click="{changeName}" value="Cool">Change Name</button>
 </main>
 
 <style>
