@@ -1,0 +1,48 @@
+<script>
+	export let name;
+	let age = 30
+
+	$: uppercaseName = name.toUpperCase()
+
+	$: console.log(name)
+
+	$: if (age === 33) {
+		console.log('Label statement condition ran')
+	}
+
+	function incrementAge() {
+		age += 1
+	}
+
+	function changeName() {
+		name = 'Testing'
+	}
+</script>
+
+<main>
+	<h1>Hello {uppercaseName}!</h1>
+	<h2>I am {age} years old.</h2>
+	<button on:click="{incrementAge}">Increase Age</button>
+	<button on:click="{changeName}">Change Name</button>
+</main>
+
+<style>
+	main {
+		text-align: center;
+		padding: 1em;
+		max-width: 240px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		color: #ff3e00;
+		font-size: 4em;
+		font-weight: 100;
+	}
+
+	@media (min-width: 640px) {
+		main {
+			max-width: none;
+		}
+	}
+</style>
