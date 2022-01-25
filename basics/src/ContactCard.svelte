@@ -17,7 +17,7 @@
     </div>
   </header>
   <div>
-    <p>{description}</p>
+    <p>{@html description}</p>
   </div>
 </div>
 
