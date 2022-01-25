@@ -36,7 +36,13 @@
 	<button on:click="{incrementAge}">Increase Age</button>
 	<button on:click="{changeName}" value="Cool">Change Name</button>
 
-	<ContactCard name={name} age={age} jobTitle={jobTitle} description={description} imageURL={imageURL} />
+	<ContactCard
+		name={name}
+		age={age}
+		jobTitle={jobTitle}
+		{description} 
+		imageURL={imageURL}
+	/>
 
 </main>
 
