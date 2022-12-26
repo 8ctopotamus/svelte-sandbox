@@ -1,8 +1,9 @@
 <script>
   import Header from './UI/Header.svelte'
   import MeetupGrid from './Meetups/MeetupGrid.svelte';
+  import MeetupForm from './Meetups/MeetupForm.svelte';
 
-  const meetups = [
+  let meetups = [
     {
       id: "m1",
       title: "Coding Bootcamp",
@@ -25,6 +26,11 @@
       contactEmail: "swim@test.com"
     }
   ]
+
+  function addMeetup(newMeetup) {
+    meetups = [...meetups, newMeetup]
+    console.log(meetups)
+  }
 </script>
 
 <style>
@@ -35,5 +41,6 @@
 
 <Header />
 <main>
+  <MeetupForm {addMeetup} />
   <MeetupGrid {meetups} />
 </main>
