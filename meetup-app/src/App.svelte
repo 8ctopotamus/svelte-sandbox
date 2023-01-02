@@ -35,7 +35,7 @@
 
   function toggleFavorite({ detail: id }) {
     const updatedMeetups = [...meetups]
-    const idx = updatedMeetups.findIndex(m => m.id , id)
+    const idx = updatedMeetups.findIndex(m => m.id === id)
     const meetup = { ...updatedMeetups[idx] }
     meetup.isFavorite = !meetup.isFavorite
     updatedMeetups[idx] = meetup
