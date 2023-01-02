@@ -1,8 +1,8 @@
 <script>
   export let label
   export let type = "button"
-  export let href
-  export let mode
+  export let href = null
+  export let mode = null
 </script>
 
 <style>

@@ -581,7 +581,7 @@ var app = (function () {
     			t = text(/*label*/ ctx[0]);
     			attr_dev(button, "type", /*type*/ ctx[1]);
     			attr_dev(button, "class", button_class_value = "" + (null_to_empty(/*mode*/ ctx[3]) + " svelte-1t6h36c"));
-    			add_location(button, file$5, 89, 2, 1547);
+    			add_location(button, file$5, 89, 2, 1561);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -625,7 +625,7 @@ var app = (function () {
     			t = text(/*label*/ ctx[0]);
     			attr_dev(a, "href", /*href*/ ctx[2]);
     			attr_dev(a, "class", "svelte-1t6h36c");
-    			add_location(a, file$5, 87, 2, 1508);
+    			add_location(a, file$5, 87, 2, 1522);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -714,20 +714,12 @@ var app = (function () {
     	validate_slots('Button', slots, []);
     	let { label } = $$props;
     	let { type = "button" } = $$props;
-    	let { href } = $$props;
-    	let { mode } = $$props;
+    	let { href = null } = $$props;
+    	let { mode = null } = $$props;
 
     	$$self.$$.on_mount.push(function () {
     		if (label === undefined && !('label' in $$props || $$self.$$.bound[$$self.$$.props['label']])) {
     			console.warn("<Button> was created without expected prop 'label'");
-    		}
-
-    		if (href === undefined && !('href' in $$props || $$self.$$.bound[$$self.$$.props['href']])) {
-    			console.warn("<Button> was created without expected prop 'href'");
-    		}
-
-    		if (mode === undefined && !('mode' in $$props || $$self.$$.bound[$$self.$$.props['mode']])) {
-    			console.warn("<Button> was created without expected prop 'mode'");
     		}
     	});
 
@@ -1369,7 +1361,7 @@ var app = (function () {
     			attr_dev(input, "id", "title");
     			input.value = /*value*/ ctx[4];
     			attr_dev(input, "class", "svelte-xzzzlr");
-    			add_location(input, file$2, 47, 4, 905);
+    			add_location(input, file$2, 47, 4, 914);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -1419,7 +1411,7 @@ var app = (function () {
     			attr_dev(textarea, "rows", /*rows*/ ctx[3]);
     			textarea.value = /*value*/ ctx[4];
     			attr_dev(textarea, "class", "svelte-xzzzlr");
-    			add_location(textarea, file$2, 45, 4, 841);
+    			add_location(textarea, file$2, 45, 4, 850);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, textarea, anchor);
@@ -1483,9 +1475,9 @@ var app = (function () {
     			if_block.c();
     			attr_dev(label_1, "for", /*id*/ ctx[1]);
     			attr_dev(label_1, "class", "svelte-xzzzlr");
-    			add_location(label_1, file$2, 43, 2, 768);
+    			add_location(label_1, file$2, 43, 2, 777);
     			attr_dev(div, "class", "form-control svelte-xzzzlr");
-    			add_location(div, file$2, 42, 0, 738);
+    			add_location(div, file$2, 42, 0, 747);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1538,19 +1530,12 @@ var app = (function () {
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('TextInput', slots, []);
-    	let { controlType } = $$props;
+    	let { controlType = null } = $$props;
     	let { id = '' } = $$props;
     	let { label = '' } = $$props;
-    	let { rows = '' } = $$props;
+    	let { rows = null } = $$props;
     	let { value = '' } = $$props;
     	let { type = "text" } = $$props;
-
-    	$$self.$$.on_mount.push(function () {
-    		if (controlType === undefined && !('controlType' in $$props || $$self.$$.bound[$$self.$$.props['controlType']])) {
-    			console.warn("<TextInput> was created without expected prop 'controlType'");
-    		}
-    	});
-
     	const writable_props = ['controlType', 'id', 'label', 'rows', 'value', 'type'];
 
     	Object.keys($$props).forEach(key => {
