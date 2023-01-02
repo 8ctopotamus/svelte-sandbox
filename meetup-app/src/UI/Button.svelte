@@ -87,5 +87,5 @@
 {#if href}
   <a href={href}>{label}</a>
 {:else}
-  <button {type} class="{mode}">{label}</button>
+  <button {type} class="{mode}" on:click>{label}</button>
 {/if}
