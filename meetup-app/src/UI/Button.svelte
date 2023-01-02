@@ -86,7 +86,11 @@
 </style>
 
 {#if href}
-  <a href={href}>{label}</a>
+  <a href={href}>
+    <slot/>
+  </a>
 {:else}
-  <button {type} class="{mode} {color}" on:click>{label}</button>
+  <button {type} class="{mode} {color}" on:click>
+    <slot/>  
+  </button>
 {/if}

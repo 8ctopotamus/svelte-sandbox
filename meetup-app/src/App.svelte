@@ -2,6 +2,9 @@
   import Header from './UI/Header.svelte'
   import MeetupGrid from './Meetups/MeetupGrid.svelte';
   import MeetupForm from './Meetups/MeetupForm.svelte';
+  import Button from './UI/Button.svelte';
+
+  let formMode = null
 
   let meetups = [
     {
@@ -29,8 +32,9 @@
     }
   ]
 
-  function addMeetup(newMeetup) {
+  function addMeetup({ detail: newMeetup }) {
     meetups = [...meetups, newMeetup]
+    formMode = null
   }
 
   function toggleFavorite({ detail: id }) {
@@ -41,17 +45,39 @@
     updatedMeetups[idx] = meetup
     meetups = updatedMeetups
   }
+
+  function updateMeetup() {
+
+  }
+
+  function cancelForm() {
+    formMode = null
+  }
 </script>
 
 <style>
   main {
     margin-top: 5rem;
   }
+  .meetup-controls {
+    margin: 1rem;
+  }
 </style>
 
 <Header />
 <main>
-  <MeetupForm {addMeetup} />
+  <div class="meetup-controls">
+    {#if formMode === 'add'}
+      <MeetupForm 
+        on:save={formMode === 'add' ? addMeetup : updateMeetup} 
+        on:cancel={cancelForm}
+      />
+    {:else}
+      <Button on:click={() => formMode = 'add'}>
+        New Meetup
+      </Button>
+    {/if}
+  </div>
   <MeetupGrid 
     {meetups} 
     on:togglefavorite={toggleFavorite} 
