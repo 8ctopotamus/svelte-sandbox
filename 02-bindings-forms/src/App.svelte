@@ -8,6 +8,7 @@
 	let agreed
 	let favColor = 'green'
 	let favFoods = ["Mac & Cheese"]
+	let usernameInput // ref
 
 	$: console.log(val); 
 	$: console.log(opt);
@@ -15,6 +16,10 @@
 	$: console.log(agreed);
 	$: console.log(favColor);
 	$: console.log(favFoods);
+
+	function saveData() {
+		console.log(usernameInput.value)
+	}
 </script>
 
 <!-- custom inputs -->
@@ -46,7 +51,7 @@
 	<input name="color" type="radio" value="blue" bind:group={favColor} /> Blue
 </label>
 
-<!-- Binding multiple checkboxes, returns an array of values -->
+<!-- binding multiple checkboxes, returns an array of values -->
 <h2>Favorite foods?</h2>
 <label>
 	<input name="foods" type="checkbox" value="Mac & Cheese" bind:group={favFoods} /> Mac & Cheese
@@ -57,3 +62,17 @@
 <label>
 	<input name="foods" type="checkbox" value="Pad Thai" bind:group={favFoods} /> Pad Thai
 </label>
+
+<!-- selects -->
+<select bind:value={favColor}>
+	<option value="red">Red</option>
+	<option value="green">Green</option>
+	<option value="blue">Blue</option>
+</select>
+
+<hr/>
+
+<!-- ref -->
+<input type="text" id="username" bind:this={usernameInput} />
+<button on:click={saveData}>Save</button>
+
