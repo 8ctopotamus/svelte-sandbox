@@ -9,6 +9,7 @@
 	let favColor = 'green'
 	let favFoods = ["Mac & Cheese"]
 	let usernameInput // ref
+	let customInput
 
 	$: console.log(val); 
 	$: console.log(opt);
@@ -16,14 +17,16 @@
 	$: console.log(agreed);
 	$: console.log(favColor);
 	$: console.log(favFoods);
+	$: console.log(customInput)
 
 	function saveData() {
-		console.log(usernameInput.value)
+		console.log(customInput.value)
+		customInput.empty()
 	}
 </script>
 
 <!-- custom inputs -->
-<CustomInput type="text" bind:val={val} />
+<CustomInput type="text" bind:val bind:this={customInput} />
 
 <Toggle bind:chosenOption={opt} /> Chosen: {opt}
 
