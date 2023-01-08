@@ -60,8 +60,7 @@
     <textarea
       {id}
       {rows}
-      value={value}
-      on:input
+      bind:value
       on:blur={() => touched = true} 
       class:invalid={!valid && touched}
     />

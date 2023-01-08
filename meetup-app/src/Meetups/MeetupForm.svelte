@@ -3,7 +3,7 @@
   import TextInput from "../UI/TextInput.svelte";
   import Button from '../UI/Button.svelte'
   import Modal from '../UI/Modal.svelte';
-  import { isEmpty } from '../helpers/validation'
+  import { isEmpty, isValidEmail } from '../helpers/validation'
 
   let title = ''
   let subtitle = ''
@@ -12,19 +12,15 @@
   let address = ''
   let contactEmail = ''
 
-  let titleValid = false
-  let subtitleValid = false
-  let descriptionValid = false
-  let imageUrlValid = false
-  let addressValid = false
-  let contactEmailValid = false
+  const dispatch = createEventDispatcher()
 
   $: titleValid = !isEmpty(title)
   $: subtitleValid = !isEmpty(subtitle)
   $: descriptionValid = !isEmpty(description)
   $: imageUrlValid = !isEmpty(imageUrl)
   $: addressValid = !isEmpty(address)
-  $: contactEmailValid = !isEmpty(contactEmail)
+  $: contactEmailValid = !isEmpty(contactEmail) && isValidEmail(contactEmail)
+  $: formIsValid = titleValid && subtitleValid && descriptionValid && imageUrlValid && addressValid && contactEmailValid
 
   function handleSubmit() {
     const newMeetup = {
@@ -44,8 +40,6 @@
     address = ''
     contactEmail = ''
   }
-
-  const dispatch = createEventDispatcher()
 
   function cancel() {
     dispatch('cancel')
@@ -106,8 +100,7 @@
     <TextInput 
       id="description"
       label="Description"
-      value={description}
-      on:input={e => description = e.target.value}
+      bind:value={description}
       controlType="textarea"
       validityMessage="Please enter a valid description."
       valid={descriptionValid}
@@ -115,6 +108,6 @@
   </form>
   <div slot="footer">
     <Button on:click={cancel} type="button" mode="outline">Cancel</Button>
-    <Button on:click={handleSubmit} type="button">Save</Button>
+    <Button on:click={handleSubmit} type="button" disabled={!formIsValid}>Save</Button>
   </div>
 </Modal>
