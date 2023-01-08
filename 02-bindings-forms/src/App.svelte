@@ -9,8 +9,6 @@
 	$: console.log(opt);
 </script>
 
-<main>
-	<CustomInput type="text" bind:val={val} />
+<CustomInput type="text" bind:val={val} />
 
-	<Toggle bind:chosenOption={opt} /> Chosen: {opt}
-</main>
+<Toggle bind:chosenOption={opt} /> Chosen: {opt}
