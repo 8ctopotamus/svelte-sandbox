@@ -10,6 +10,11 @@
 	let favFoods = ["Mac & Cheese"]
 	let usernameInput // ref
 	let customInput
+	let email = ''
+	let formIsValid = false
+
+	// validation
+	$: formIsValid = email.includes('@')
 
 	$: console.log(val); 
 	$: console.log(opt);
@@ -79,3 +84,9 @@
 <input type="text" id="username" bind:this={usernameInput} />
 <button on:click={saveData}>Save</button>
 
+<hr/>
+
+<form on:submit|preventDefault>
+	<input type="email" bind:value={email} />
+	<button type="submit" disabled={!formIsValid}>Save</button>
+</form>
