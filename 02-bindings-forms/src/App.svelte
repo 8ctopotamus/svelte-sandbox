@@ -1,17 +1,16 @@
 <script>
-	import CustomInput from "./CustomInput.svelte";
-	import Toggle from "./Toggle.svelte";
+	import CustomInput from "./components/CustomInput.svelte";
+	import Toggle from "./components/Toggle.svelte";
 
-	export let val = "Test";
+	let val = "Test";
+	let opt = 1
 
-	$: console.log(val)
-
-	const setVal = e => val = e.target.value
-
+	$: console.log(val); 
+	$: console.log(opt);
 </script>
 
 <main>
 	<CustomInput type="text" bind:val={val} />
 
-	<Toggle />
+	<Toggle bind:chosenOption={opt} /> Chosen: {opt}
 </main>
