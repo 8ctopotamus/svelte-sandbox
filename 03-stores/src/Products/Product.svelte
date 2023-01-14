@@ -9,7 +9,7 @@
 
   function addToCart() {
     cartItems.update(items => {
-      return [...items, {id, title, price}]
+      return [...items, { id, title, price }]
     })
   }
 </script>
