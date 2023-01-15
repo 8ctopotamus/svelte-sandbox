@@ -1,5 +1,5 @@
 <script>
-  import cartItems from './cart-store'
+  import cartStore from './cart-store'
   import { products } from '../Products/products-store.js';
   import Button from "../UI/Button.svelte";
 
@@ -19,9 +19,7 @@
   }
 
   function removeFromCart() {
-    cartItems.update(items => {
-      return items.filter(item => item.id !== id)
-    })
+    cartStore.removeItem(id)
   }
 </script>
 
