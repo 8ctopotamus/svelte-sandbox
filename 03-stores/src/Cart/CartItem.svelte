@@ -15,6 +15,7 @@
     const unsubscribe = products.subscribe(prods => {
       description = prods.find(p => p.id === id).description
     })
+    unsubscribe()
   }
 
   function removeFromCart() {
