@@ -24,7 +24,6 @@
 
   function handleSubmit() {
     const newMeetup = {
-      id: Math.random().toString(),
       title,
       subtitle,
       description,
