@@ -7,13 +7,8 @@
 
   let formMode = null
 
-  function addMeetup({ detail: newMeetup }) {
-    meetupsStore.addMeetup(newMeetup)
+  function addMeetup() {
     formMode = null
-  }
-
-  function toggleFavorite({ detail: id }) {
-    meetupsStore.toggleFavorite(id)
   }
 
   function updateMeetup() {
@@ -48,8 +43,5 @@
       </Button>
     {/if}
   </div>
-  <MeetupGrid 
-    meetups={$meetupsStore} 
-    on:togglefavorite={toggleFavorite} 
-  />
+  <MeetupGrid meetups={$meetupsStore} />
 </main>

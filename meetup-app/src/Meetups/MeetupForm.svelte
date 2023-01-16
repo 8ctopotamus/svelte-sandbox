@@ -4,6 +4,7 @@
   import Button from '../UI/Button.svelte'
   import Modal from '../UI/Modal.svelte';
   import { isEmpty, isValidEmail } from '../helpers/validation'
+  import meetupsStore from './meetups-store'
 
   let title = ''
   let subtitle = ''
@@ -31,7 +32,8 @@
       address,
       contactEmail
     }
-    dispatch('save', newMeetup)
+    meetupsStore.addMeetup(newMeetup)
+    dispatch('save')
     title = ''
     subtitle = ''
     description = ''
