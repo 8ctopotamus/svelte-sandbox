@@ -23,6 +23,7 @@
     <MeetupItem 
       {...meetup} 
       on:togglefavorite
+      on:showDetails
     />
   {/each}
 </section>
