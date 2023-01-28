@@ -3,6 +3,12 @@
   import MeetupFilter from "./MeetupFilter.svelte";
 
   export let meetups
+  
+  let filterBy = 'all'
+
+  $: filteredMeetups = filterBy === 'favorites'
+    ? meetups.filter(meetup => meetup.isFavorite)
+    : meetups
 </script>
 
 <style>
@@ -19,9 +25,13 @@
   }
 </style>
 
-<MeetupFilter />
+<MeetupFilter 
+  on:select={event => filterBy = event.detail} 
+  filterBy={filterBy} 
+/>
+
 <section id="meetups">
-  {#each meetups as meetup}
+  {#each filteredMeetups as meetup}
     <MeetupItem 
       {...meetup} 
       on:togglefavorite

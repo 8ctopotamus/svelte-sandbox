@@ -2,6 +2,8 @@
   import { createEventDispatcher } from "svelte"
 
   const dispatch = createEventDispatcher()
+
+  export let filterBy = 'all'
 </script>
 
 <style>
@@ -41,6 +43,14 @@
 </style>
 
 <div>
-  <button type="button" on:click={() => dispatch('select', 'all')}>All</button>
-  <button type="button" on:click={() => dispatch('select', 'favorites')}>Favorites</button>
+  <button
+    type="button"
+    on:click={() => dispatch('select', 'all')}
+    class:active={filterBy === 'all'}
+  >All</button>
+  <button
+    type="button"
+    on:click={() => dispatch('select', 'favorites')}
+    class:active={filterBy === 'favorites' ? 'active' : ''}
+  >Favorites</button>
 </div>
