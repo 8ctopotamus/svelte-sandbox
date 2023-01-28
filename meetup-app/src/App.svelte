@@ -7,19 +7,28 @@
   import meetupsStore from './Meetups/meetups-store'
 
   let formMode = null
+  let editId = null
   let page = 'overview'
   const pageData = { id: null }
 
-  function addMeetup() {
+  function savedMeetup() {
     formMode = null
+    editId = null
   }
 
-  function updateMeetup() {
-
+  function startEdit(event) {
+    formMode = 'edit'
+    editId = event.detail
+  }
+  
+  function cancelEdit() {
+    formMode = null
+    editId = null
   }
 
-  function cancelForm() {
-    formMode = null
+  function deleteMeetup(event) {
+    meetupsStore.removeMeetup(event.detail)
+    cancelEdit()
   }
 
   function showDetails(event) {
@@ -29,7 +38,7 @@
 
   function hideDetails() {
     page = 'overview'
-    pageData.id = null
+    editId = null
   }
 </script>
 
@@ -47,18 +56,24 @@
 <main>
   {#if page === 'overview'}
     <div class="meetup-controls">
-      {#if formMode === 'add'}
+      {#if formMode === 'edit'}
         <MeetupForm 
-          on:save={formMode === 'add' ? addMeetup : updateMeetup} 
-          on:cancel={cancelForm}
+          id={editId}
+          on:save={savedMeetup} 
+          on:cancel={cancelEdit}
+          on:delete={deleteMeetup}
         />
       {:else}
-        <Button on:click={() => formMode = 'add'}>
+        <Button on:click={() => formMode = 'edit'}>
           New Meetup
         </Button>
       {/if}
     </div>
-    <MeetupGrid meetups={$meetupsStore} on:showDetails={showDetails} />
+    <MeetupGrid 
+      meetups={$meetupsStore} 
+      on:showDetails={showDetails} 
+      on:edit={startEdit}
+    />
   {:else} 
     <MeetupDetail id={pageData.id} on:close={hideDetails} />
   {/if}

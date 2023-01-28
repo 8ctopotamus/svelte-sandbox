@@ -6,12 +6,27 @@
   import { isEmpty, isValidEmail } from '../helpers/validation'
   import meetupsStore from './meetups-store'
 
+  export let id = null;
+
   let title = ''
   let subtitle = ''
   let description = ''
   let imageUrl = ''
   let address = ''
   let contactEmail = ''
+
+  if (id) {
+    const unsubscribe = meetupsStore.subscribe(items => {
+      const selectedMeetup = items.find(item => item.id === id)
+      title = selectedMeetup.title
+      subtitle = selectedMeetup.subtitle
+      description = selectedMeetup.description
+      imageUrl = selectedMeetup.imageUrl
+      address = selectedMeetup.address
+      contactEmail = selectedMeetup.contactEmail
+    })
+    unsubscribe()
+  }
 
   const dispatch = createEventDispatcher()
 
@@ -32,7 +47,11 @@
       address,
       contactEmail
     }
-    meetupsStore.addMeetup(newMeetup)
+    if (id) {
+      meetupsStore.updateMeetup(id, newMeetup)
+    } else {
+      meetupsStore.addMeetup(newMeetup)
+    }
     dispatch('save')
     title = ''
     subtitle = ''
@@ -110,5 +129,8 @@
   <div slot="footer">
     <Button on:click={cancel} type="button" mode="outline">Cancel</Button>
     <Button on:click={handleSubmit} type="button" disabled={!formIsValid}>Save</Button>
+    {#if id}
+      <Button on:click={() => dispatch('delete', id)}>Delete</Button>
+    {/if}
   </div>
 </Modal>

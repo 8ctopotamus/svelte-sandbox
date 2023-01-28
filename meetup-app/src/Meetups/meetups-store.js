@@ -40,8 +40,19 @@ const customMeetupsStore = {
       ]
     })
   },
+  updateMeetup: (id, newMeetup) => {
+    meetups.update(currentMeetups => {
+      const updatedMeetups = [...currentMeetups]
+      const idx = updatedMeetups.findIndex(m => m.id === id)
+      updatedMeetups[idx] = { ...currentMeetups[idx], ...newMeetup }
+      return updatedMeetups
+    })
+  },
   removeMeetup: id => {
-
+    console.log(id)
+    meetups.update(currentMeetups => {
+      return currentMeetups.filter(meetup => meetup.id !== id)
+    })
   },
   toggleFavorite: id => {
     meetups.update(currentMeetups => {

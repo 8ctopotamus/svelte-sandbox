@@ -1,5 +1,6 @@
 <script>
   import MeetupItem from "./MeetupItem.svelte";
+  import MeetupFilter from "./MeetupFilter.svelte";
 
   export let meetups
 </script>
@@ -18,12 +19,14 @@
   }
 </style>
 
+<MeetupFilter />
 <section id="meetups">
   {#each meetups as meetup}
     <MeetupItem 
       {...meetup} 
       on:togglefavorite
       on:showDetails
+      on:edit
     />
   {/each}
 </section>

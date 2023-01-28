@@ -89,10 +89,15 @@
     <img src={imageUrl} alt={title} />
   </div>
   <div class="content">
+    <a href="mailto: {contactEmail}">Contact</a>
     <p>{description}</p>
   </div>
   <footer>
-    <Button href="mailto: {contactEmail}">Contact</Button>
+    <Button
+      mode="outline"
+      type="button"
+      on:click={() => dispatch('edit', id)}
+    >Edit</Button>
     <Button
       mode={isFavorite ? null : "outline"}
       color={isFavorite ? null : "success"}
